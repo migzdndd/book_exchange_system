@@ -69,7 +69,7 @@ class Crud
         $stmt = $this->pdo->prepare($sql);
         $stmt->execute($bindings);
 
-        return $stmt->fetchAll();
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
 
     /** GET /api/<resource>?id=5 */
@@ -79,7 +79,7 @@ class Crud
             "SELECT * FROM `{$this->table}` WHERE `{$this->primaryKey}` = :id LIMIT 1"
         );
         $stmt->execute(['id' => $id]);
-        $row = $stmt->fetch();
+        $row = $stmt->fetch(PDO::FETCH_ASSOC);
 
         return $row ?: null;
     }

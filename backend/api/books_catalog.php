@@ -64,7 +64,7 @@ function fetch_category_ids(PDO $pdo, array $bookIds): array
     $stmt->execute($bookIds);
 
     $map = [];
-    foreach ($stmt->fetchAll() as $row) {
+    foreach ($stmt->fetchAll(PDO::FETCH_ASSOC) as $row) {
         $map[(int) $row['book_id']][] = (int) $row['category_id'];
     }
     return $map;
