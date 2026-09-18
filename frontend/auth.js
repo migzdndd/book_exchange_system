@@ -1,6 +1,6 @@
 /* LIBROWSE BOOK EXCHANGE - Frontend Authentication JavaScript */
 
-const API_BASE = "http://127.0.0.1:8000/api";
+const API_BASE = "https://book-exchange-api-eight.vercel.app/api";
 
 /**
  * Built-in mock customer accounts for offline/demo resilience
@@ -67,7 +67,7 @@ async function apiRequest(endpoint, options = {}) {
         if (err.name === "TypeError" && err.message.includes("fetch")) {
             throw new Error(
                 "Cannot connect to the backend at " + API_BASE +
-                ". Please ensure your PHP server is running (e.g., php -S 127.0.0.1:8000 -t book-marketplace-backend)."
+                ". Please ensure the API is reachable."
             );
         }
         throw err;

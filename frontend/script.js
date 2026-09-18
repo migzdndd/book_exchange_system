@@ -5,11 +5,11 @@
 
 /*
    HTML Live Preview runs separately from PHP.
-   PHP back-end will run at: http://127.0.0.1:8000/
+   PHP back-end will run at: https://book-exchange-api-eight.vercel.app/
    API files are served from: /api/
 */
 const API_BASE =
-    "http://127.0.0.1:8000/api";
+    "https://book-exchange-api-eight.vercel.app/api";
 
 
 /* GLOBAL DATA */
@@ -268,7 +268,7 @@ async function apiRequest(endpoint, options = {}) {
         if (error.name === "AbortError") {
 
             error = new Error(
-                `Request to ${url} timed out. Is the PHP server running (php -S 127.0.0.1:8000) and reachable?`
+                `Request to ${url} timed out. Is the Vercel deployment reachable?`
             );
 
         }
