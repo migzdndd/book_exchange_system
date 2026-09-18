@@ -11,15 +11,15 @@ $dbPort = get_env_or('DB_PORT', '3306');
 $dbName = get_env_or('DB_NAME', 'book_marketplace');
 $dbUser = get_env_or('DB_USER', 'root');
 $dbPass = get_env_or('DB_PASS', '');
-$dbSsl  = strtolower(get_env_or('DB_SSL', 'false')) === 'true';
+$dbSsl = strtolower(get_env_or('DB_SSL', 'false')) === 'true';
 
 $dsn = "mysql:host={$dbHost};port={$dbPort};dbname={$dbName};charset=utf8mb4";
 
 $options = [
-    PDO::ATTR_ERRMODE            => PDO::ERRMODE_EXCEPTION,
+    PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
     PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC,
-    PDO::ATTR_EMULATE_PREPARES   => false,
-    PDO::ATTR_TIMEOUT            => 10,
+    PDO::ATTR_EMULATE_PREPARES => false,
+    PDO::ATTR_TIMEOUT => 10,
 ];
 
 if ($dbSsl) {
@@ -29,8 +29,8 @@ if ($dbSsl) {
         throw new RuntimeException('TiDB CA certificate not found.');
     }
 
-    $options[PDO::MYSQL_ATTR_SSL_CA] = $caPath;
-    $options[PDO::MYSQL_ATTR_SSL_VERIFY_SERVER_CERT] = true;
+    $options[\Pdo\Mysql::ATTR_SSL_CA] = $caPath;
+    $options[\Pdo\Mysql::ATTR_SSL_VERIFY_SERVER_CERT] = true;
 }
 
 try {
@@ -45,7 +45,7 @@ try {
     header('Content-Type: application/json');
 
     echo json_encode([
-        'error'   => 'Database connection failed',
+        'error' => 'Database connection failed',
         'details' => $e->getMessage(),
     ]);
 
