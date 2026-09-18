@@ -1,6 +1,6 @@
 /* LIBROWSE BOOK EXCHANGE - Frontend Authentication JavaScript */
 
-const API_BASE = "https://book-exchange-api-eight.vercel.app/api";
+const API_BASE = "http://127.0.0.1:8000/api";
 
 /**
  * Built-in mock customer accounts for offline/demo resilience
