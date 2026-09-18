@@ -9,7 +9,7 @@
    API files are served from: /api/
 */
 const API_BASE =
-    "http://127.0.0.1:8000/api";
+    "https://book-exchange-api-eight.vercel.app/api";
 
 
 /* GLOBAL DATA */
