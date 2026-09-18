@@ -23,7 +23,14 @@ $options = [
 ];
 
 if ($dbSsl) {
-    $options[PDO::MYSQL_ATTR_SSL_VERIFY_SERVER_CERT] = false;
+    $caPath = __DIR__ . '/tidb-ca.pem';
+
+    if (!file_exists($caPath)) {
+        throw new RuntimeException('TiDB CA certificate not found.');
+    }
+
+    $options[PDO::MYSQL_ATTR_SSL_CA] = $caPath;
+    $options[PDO::MYSQL_ATTR_SSL_VERIFY_SERVER_CERT] = true;
 }
 
 try {
@@ -33,7 +40,7 @@ try {
         $dbPass,
         $options
     );
-} catch (PDOException $e) {
+} catch (Throwable $e) {
     http_response_code(500);
     header('Content-Type: application/json');
 
